@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { NavigationProvider, useNavigation } from './contexts/NavigationContext';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
-import Dashboard from './components/Dashboard';
-import Sidebar from './components/Sidebar';
-import CustomerManagement from './components/CustomerManagement';
-import ProductManagement from './components/ProductManagement';
+import React, { useState } from "react";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import {
+  NavigationProvider,
+  useNavigation
+} from "./contexts/NavigationContext";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
+import Dashboard from "./components/Dashboard";
+import Sidebar from "./components/Sidebar";
+import CustomerManagement from "./components/CustomerManagement";
+import ProductManagement from "./components/ProductManagement";
 
 function MainContent() {
   const { currentPage } = useNavigation();
 
   const renderContent = () => {
     switch (currentPage) {
-      case 'Dashboard':
+      case "Dashboard":
         return <Dashboard />;
-      case 'Customers':
+      case "Customers":
         return <CustomerManagement />;
-      case 'Products':
+      case "Products":
         return <ProductManagement />;
       default:
         return <Dashboard />;
     }
   };
 
-  return (
-    <div className="pl-64">
-      {renderContent()}
-    </div>
-  );
+  return <div className="pl-64">{renderContent()}</div>;
 }
 
 function AuthenticatedApp() {
@@ -57,20 +56,24 @@ function AuthenticatedApp() {
           />
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          {isLogin ? 'Sign in to your restaurant' : 'Register your restaurant'}
+          {isLogin
+            ? "Efetue Login do seu Restaurante"
+            : "Registre o seu Restaurante"}
         </h2>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           {isLogin ? <LoginForm /> : <RegisterForm />}
-          
+
           <div className="mt-6">
             <button
               onClick={() => setIsLogin(!isLogin)}
               className="w-full text-center text-sm text-orange-600 hover:text-orange-500"
             >
-              {isLogin ? 'Need to register your restaurant?' : 'Already have an account? Sign in'}
+              {isLogin
+                ? "Need to register your restaurant?"
+                : "Already have an account? Sign in"}
             </button>
           </div>
         </div>
